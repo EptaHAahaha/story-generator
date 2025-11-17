@@ -3,237 +3,413 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI-Рассказчик Историй</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Форум по Ванильному Minecraft</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 50%, #2a2a2a 100%);
+            color: #ffffff;
+            margin: 0;
+            padding: 20px;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23ffffff" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="%23ffffff" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeIn 1s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        h1 {
+            font-family: 'Press Start 2P', cursive;
+            text-align: center;
+            color: #ffd700;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        @keyframes glow {
+            from { text-shadow: 2px 2px 4px rgba(255,215,0,0.5); }
+            to { text-shadow: 2px 2px 4px rgba(255,0,0,0.5); }
+        }
+        .question-form {
+            background: rgba(26, 26, 26, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border: 2px solid #ffd700;
+            box-shadow: 0 4px 8px rgba(255,215,0,0.3);
+            transition: transform 0.3s;
+        }
+        .question-form:hover {
+            transform: translateY(-5px);
+        }
+        .question-form h2 {
+            color: #ffd700;
+            margin-top: 0;
+            font-weight: 700;
+        }
+        .question-form input, .question-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 10px;
+            border: 2px solid #ffd700;
+            border-radius: 8px;
+            background-color: #333;
+            color: #fff;
+            font-family: 'Roboto', sans-serif;
+            transition: border-color 0.3s;
+        }
+        .question-form input:focus, .question-form textarea:focus {
+            border-color: #ff6b6b;
+            outline: none;
+        }
+        .question-form button {
+            background: linear-gradient(45deg, #ffd700, #ff6b6b);
+            color: #000;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: background 0.3s;
+        }
+        .question-form button:hover {
+            background: linear-gradient(45deg, #ff6b6b, #ffd700);
+        }
+        .questions-list {
+            margin-top: 30px;
+        }
+        .question {
+            background: rgba(26, 26, 26, 0.9);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            border: 2px solid #ffd700;
+            box-shadow: 0 4px 8px rgba(255,215,0,0.3);
+            transition: transform 0.3s;
+        }
+        .question:hover {
+            transform: translateY(-3px);
+        }
+        .question h3 {
+            color: #ffd700;
+            margin-top: 0;
+            font-weight: 700;
+        }
+        .question p {
+            margin-bottom: 10px;
+        }
+        .answer-form {
+            margin-top: 15px;
+            display: none; /* Hidden by default, shown only for admins */
+        }
+        .answer-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 10px;
+            border: 2px solid #ffd700;
+            border-radius: 8px;
+            background-color: #333;
+            color: #fff;
+            font-family: 'Roboto', sans-serif;
+            transition: border-color 0.3s;
+        }
+        .answer-form textarea:focus {
+            border-color: #ff6b6b;
+            outline: none;
+        }
+        .answer-form button {
+            background: linear-gradient(45deg, #ffd700, #ff6b6b);
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: background 0.3s;
+        }
+        .answer-form button:hover {
+            background: linear-gradient(45deg, #ff6b6b, #ffd700);
+        }
+        .answers {
+            margin-top: 20px;
+            padding-left: 20px;
+            border-left: 3px solid #ffd700;
+        }
+        .answer {
+            background: rgba(42, 42, 42, 0.8);
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border: 1px solid #ff6b6b;
+        }
+        .admin-login {
+            background: rgba(26, 26, 26, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border: 2px solid #ffd700;
+            box-shadow: 0 4px 8px rgba(255,215,0,0.3);
+        }
+        .admin-login h2 {
+            color: #ffd700;
+            margin-top: 0;
+        }
+        .admin-login input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 2px solid #ffd700;
+            border-radius: 8px;
+            background-color: #333;
+            color: #fff;
+        }
+        .admin-login button {
+            background: linear-gradient(45deg, #ffd700, #ff6b6b);
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+        .admin-login button:hover {
+            background: linear-gradient(45deg, #ff6b6b, #ffd700);
+        }
+        .logout-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #ff6b6b;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .moderation-btns {
+            margin-top: 10px;
+        }
+        .moderation-btns button {
+            background: #ff6b6b;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 5px;
+            font-size: 0.8em;
+        }
+        .moderation-btns button:hover {
+            background: #cc5555;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>AI-Рассказчик Историй</h1>
-            <p>Создай свою уникальную историю за секунды!</p>
-        </header>
+        <h1><i class="fas fa-cube"></i> Форум по Ванильному Minecraft <i class="fas fa-cube"></i></h1>
 
-        <main>
-            <form id="storyForm">
-                <div class="input-group">
-                    <label for="genre">Жанр:</label>
-                    <select id="genre" required>
-                        <option value="">Выбери жанр</option>
-                        <option value="фэнтези">Фэнтези</option>
-                        <option value="детектив">Детектив</option>
-                        <option value="sci-fi">Научная фантастика</option>
-                        <option value="романтика">Романтика</option>
-                        <option value="ужасы">Ужасы</option>
-                    </select>
-                </div>
+        <div class="admin-login" id="adminLogin">
+            <h2><i class="fas fa-user-shield"></i> Вход для администратора</h2>
+            <input type="text" id="adminUsername" placeholder="Логин" required>
+            <input type="password" id="adminPassword" placeholder="Пароль" required>
+            <button onclick="adminLogin()">Войти</button>
+        </div>
 
-                <div class="input-group">
-                    <label for="hero">Герой:</label>
-                    <input type="text" id="hero" placeholder="Например: пират или волшебница" required>
-                </div>
+        <button class="logout-btn" id="logoutBtn" style="display: none;" onclick="adminLogout()">Выйти</button>
 
-                <div class="input-group">
-                    <label for="place">Место действия:</label>
-                    <input type="text" id="place" placeholder="Например: подводный город" required>
-                </div>
-
-                <button type="submit">Генерировать историю!</button>
+        <div class="question-form">
+            <h2><i class="fas fa-question-circle"></i> Задать вопрос</h2>
+            <form id="questionForm">
+                <input type="text" id="questionTitle" placeholder="Заголовок вопроса" required>
+                <textarea id="questionText" placeholder="Подробное описание вопроса" rows="4" required></textarea>
+                <button type="submit"><i class="fas fa-paper-plane"></i> Отправить вопрос</button>
             </form>
+        </div>
 
-            <section id="storyOutput" class="output hidden">
-                <h2>Твоя история:</h2>
-                <div id="storyText"></div>
-                <button id="continueBtn" class="continue-btn">Продолжить историю</button>
-            </section>
-        </main>
-
-        <footer>
-            <p>&copy; 2025 Сделан руками Степана Громова</p>
-        </footer>
+        <div class="questions-list" id="questionsList">
+            <!-- Вопросы будут добавляться сюда -->
+        </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const questionForm = document.getElementById('questionForm');
+            const questionsList = document.getElementById('questionsList');
+            const adminLogin = document.getElementById('adminLogin');
+            const logoutBtn = document.getElementById('logoutBtn');
 
-<style>
-    body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(to bottom, #667eea 0%, #764ba2 100%);
-    margin: 0;
-    padding: 0;
-    color: #333;
-}
+            // Инициализация админов
+            initializeAdmins();
 
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-}
+            // Проверка статуса админа при загрузке
+            checkAdminStatus();
 
-header {
-    text-align: center;
-    color: white;
-    margin-bottom: 40px;
-}
+            // Загрузка вопросов из localStorage
+            loadQuestions();
 
-header h1 {
-    font-size: 2.5em;
-    margin: 0;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-}
+            questionForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const title = document.getElementById('questionTitle').value;
+                const text = document.getElementById('questionText').value;
 
-header p {
-    font-size: 1.2em;
-    opacity: 0.9;
-}
+                const question = {
+                    id: Date.now(),
+                    title: title,
+                    text: text,
+                    answers: [],
+                    timestamp: new Date().toLocaleString()
+                };
 
-main {
-    background: white;
-    border-radius: 15px;
-    padding: 30px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-}
+                saveQuestion(question);
+                displayQuestion(question);
 
-.input-group {
-    margin-bottom: 20px;
-}
+                questionForm.reset();
+            });
 
-.input-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
+            function saveQuestion(question) {
+                const questions = JSON.parse(localStorage.getItem('minecraftQuestions') || '[]');
+                questions.push(question);
+                localStorage.setItem('minecraftQuestions', JSON.stringify(questions));
+            }
 
-.input-group input,
-.input-group select {
-    width: 100%;
-    padding: 10px;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    font-size: 16px;
-    box-sizing: border-box;
-}
+            function loadQuestions() {
+                const questions = JSON.parse(localStorage.getItem('minecraftQuestions') || '[]');
+                questions.forEach(displayQuestion);
+            }
 
-button {
-    background: #667eea;
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-size: 18px;
-    cursor: pointer;
-    width: 100%;
-    transition: background 0.3s;
-}
+            function displayQuestion(question) {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question';
+                questionDiv.innerHTML = `
+                    <h3><i class="fas fa-question"></i> ${question.title}</h3>
+                    <p>${question.text}</p>
+                    <small><i class="fas fa-clock"></i> Задан: ${question.timestamp}</small>
+                    <div class="moderation-btns" style="display: none;">
+                        <button onclick="editQuestion(${question.id})"><i class="fas fa-edit"></i> Редактировать</button>
+                        <button onclick="deleteQuestion(${question.id})"><i class="fas fa-trash"></i> Удалить</button>
+                    </div>
+                    <div class="answer-form">
+                        <textarea placeholder="Ваш ответ" rows="3"></textarea>
+                        <button onclick="addAnswer(${question.id}, this.previousElementSibling.value)"><i class="fas fa-reply"></i> Ответить</button>
+                    </div>
+                    <div class="answers" id="answers-${question.id}">
+                        ${question.answers.map(answer => `<div class="answer"><p>${answer.text}</p><small><i class="fas fa-user"></i> ${answer.timestamp}</small></div>`).join('')}
+                    </div>
+                `;
+                questionsList.appendChild(questionDiv);
+                // Показать форму ответа и кнопки модерации только админам
+                if (localStorage.getItem('adminLoggedIn') === 'true') {
+                    questionDiv.querySelector('.answer-form').style.display = 'block';
+                    questionDiv.querySelector('.moderation-btns').style.display = 'block';
+                }
+            }
 
-button:hover {
-    background: #5a67d8;
-}
+            window.addAnswer = function(questionId, answerText) {
+                if (!answerText.trim()) return;
+                if (localStorage.getItem('adminLoggedIn') !== 'true') {
+                    alert('Только администраторы могут отвечать на вопросы!');
+                    return;
+                }
 
-.output {
-    margin-top: 30px;
-    padding: 20px;
-    background: #f8f9ff;
-    border-radius: 10px;
-    border-left: 5px solid #667eea;
-}
+                const questions = JSON.parse(localStorage.getItem('minecraftQuestions') || '[]');
+                const question = questions.find(q => q.id === questionId);
+                if (question) {
+                    const answer = {
+                        text: answerText,
+                        timestamp: new Date().toLocaleString()
+                    };
+                    question.answers.push(answer);
+                    localStorage.setItem('minecraftQuestions', JSON.stringify(questions));
 
-.output h2 {
-    color: #667eea;
-    margin-top: 0;
-}
+                    // Обновить отображение
+                    const answersDiv = document.getElementById(`answers-${questionId}`);
+                    answersDiv.innerHTML += `<div class="answer"><p>${answer.text}</p><small><i class="fas fa-user"></i> ${answer.timestamp}</small></div>`;
 
-#storyText {
-    font-size: 18px;
-    line-height: 1.6;
-    white-space: pre-wrap;
-    min-height: 200px;
-}
+                    // Очистить textarea
+                    event.target.previousElementSibling.value = '';
+                }
+            };
 
-.continue-btn {
-    margin-top: 20px;
-    background: #48bb78;
-    width: auto;
-    padding: 10px 20px;
-}
+            function initializeAdmins() {
+                if (!localStorage.getItem('admins')) {
+                    const admins = [
+                        { username: 'admin', password: 'admin' },
+                        { username: 'TB1KCTEP', password: '2886503480N' }
+                    ];
+                    localStorage.setItem('admins', JSON.stringify(admins));
+                }
+            }
 
-.continue-btn:hover {
-    background: #38a169;
-}
+            window.adminLogin = function() {
+                const username = document.getElementById('adminUsername').value;
+                const password = document.getElementById('adminPassword').value;
+                const admins = JSON.parse(localStorage.getItem('admins') || '[]');
+                const admin = admins.find(a => a.username === username && a.password === password);
+                if (admin) {
+                    localStorage.setItem('adminLoggedIn', 'true');
+                    checkAdminStatus();
+                    alert('Вход выполнен успешно!');
+                } else {
+                    alert('Неверный логин или пароль!');
+                }
+            };
 
-.hidden {
-    display: none;
-}
+            window.adminLogout = function() {
+                localStorage.removeItem('adminLoggedIn');
+                checkAdminStatus();
+                alert('Вы вышли из системы.');
+            };
 
-footer {
-    text-align: center;
-    color: white;
-    margin-top: 40px;
-    opacity: 0.8;
-}
+            window.editQuestion = function(questionId) {
+                const questions = JSON.parse(localStorage.getItem('minecraftQuestions') || '[]');
+                const question = questions.find(q => q.id === questionId);
+                if (question) {
+                    const newTitle = prompt('Новый заголовок:', question.title);
+                    const newText = prompt('Новый текст вопроса:', question.text);
+                    if (newTitle && newText) {
+                        question.title = newTitle;
+                        question.text = newText;
+                        localStorage.setItem('minecraftQuestions', JSON.stringify(questions));
+                        // Перезагрузить вопросы
+                        questionsList.innerHTML = '';
+                        loadQuestions();
+                    }
+                }
+            };
 
-/* Responsive */
-@media (max-width: 600px) {
-    .container {
-        padding: 10px;
-    }
-    
-    header h1 {
-        font-size: 2em;
-    }
-}
-</style>
-<script>document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('storyForm');
-    const output = document.getElementById('storyOutput');
-    const storyText = document.getElementById('storyText');
-    const continueBtn = document.getElementById('continueBtn');
+            window.deleteQuestion = function(questionId) {
+                if (confirm('Вы уверены, что хотите удалить этот вопрос?')) {
+                    const questions = JSON.parse(localStorage.getItem('minecraftQuestions') || '[]');
+                    const updatedQuestions = questions.filter(q => q.id !== questionId);
+                    localStorage.setItem('minecraftQuestions', JSON.stringify(updatedQuestions));
+                    // Перезагрузить вопросы
+                    questionsList.innerHTML = '';
+                    loadQuestions();
+                }
+            };
 
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const genre = document.getElementById('genre').value;
-        const hero = document.getElementById('hero').value;
-        const place = document.getElementById('place').value;
-
-        // Здесь подключи реальный API ИИ, например:
-        // fetch('https://api.openai.com/v1/chat/completions', {
-        //     method: 'POST',
-        //     headers: { 'Authorization': 'Bearer YOUR_API_KEY', 'Content-Type': 'application/json' },
-        //     body: JSON.stringify({
-        //         model: 'gpt-3.5-turbo',
-        //         messages: [{ role: 'user', content: `Напиши короткую историю в жанре ${genre}. Главный герой: ${hero}. Место: ${place}. Длина: 300 слов.` }]
-        //     })
-        // }).then(response => response.json())
-        // .then(data => storyText.textContent = data.choices[0].message.content)
-        // .catch(error => storyText.textContent = 'Ошибка генерации: ' + error);
-
-        // Пока симуляция (placeholder):
-        const simulatedStory = generateSimulatedStory(genre, hero, place);
-        storyText.textContent = simulatedStory;
-
-        output.classList.remove('hidden');
-        form.reset(); // Очистить форму после генерации
-    });
-
-    continueBtn.addEventListener('click', function() {
-        // Симуляция продолжения (или вызов API с "продолжи историю")
-        const currentStory = storyText.textContent;
-        const continuation = `\n\n...И вдруг, в кульминационный момент, ${hero} обнаруживает древний артефакт в ${place}, который меняет всё! Конец? Нет, это только начало новой главы.`;
-        storyText.textContent += continuation;
-    });
-
-    function generateSimulatedStory(genre, hero, place) {
-        const templates = {
-            фэнтези: `В далёком мире ${place} жил-был ${hero}. Однажды, под лунным светом, он/она наткнулся/натыкнулась на волшебный свиток. "${hero} отправился в эпическое приключение, сражаясь с драконами и разгадывая загадки древних эльфов. В конце, герой обрёл истинную силу и вернулся домой героем."`,
-            детектив: `В тёмных улочках ${place} детектив ${hero} расследовал загадочное убийство. Ключ к разгадке скрывался в старом письме. После погони и допросов, ${hero} поймал преступника в кульминационный момент. "Правда всегда побеждает тьму!"`,
-            'sci-fi': `На космической станции ${place} капитан ${hero} столкнулся с инопланетным вторжением. Используя высокие технологии, он/она активировал защитный щит. "В бесконечности космоса надежда — в человеческом духе."`,
-            романтика: `В уютном уголке ${place} ${hero} встретил/встретила любовь своей жизни. Их прогулки под звёздами переросли в страстный роман. "Сердце знает путь к счастью лучше разума."`,
-            ужасы: `В заброшенном ${place} ${hero} услышал шёпот теней. Ночью тени ожили, преследуя его/её. Но смелость героя развеяла ужас. "Страх — лишь иллюзия в темноте."`
-        };
-
-        return templates[genre] || `В ${place} ${hero} пережил(а) незабываемое приключение в жанре ${genre}. Это была история о смелости и открытиях!`;
-    }
-});
-</script>
+            function checkAdminStatus() {
+                if (localStorage.getItem('adminLoggedIn') === 'true') {
+                    adminLogin.style.display = 'none';
+                    logoutBtn.style.display = 'block';
+                    // Показать все формы ответа и кнопки модерации
+                    document.querySelectorAll('.answer-form').forEach(form => form.style.display = 'block');
+                    document.querySelectorAll('.moderation-btns').forEach(btns => btns.style.display = 'block');
+                } else {
+                    adminLogin.style.display = 'block';
+                    logoutBtn.style.display = 'none';
+                    // Скрыть все формы ответа и кнопки модерации
+                    document.querySelectorAll('.answer-form').forEach(form => form.style.display = 'none');
+                    document.querySelectorAll('.moderation-btns').forEach(btns => btns.style.display = 'none');
+                }
+            }
+        });
+    </script>
 </body>
 </html>
