@@ -1,0 +1,266 @@
+```html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RELL Seas - Эпический мир пиратов в Roblox</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+            color: #fff;
+            line-height: 1.6;
+        }
+        header {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://static.wikia.nocookie.net/rell-seasw/images/8/80/Twocoallage.png/revision/latest?cb=20250807084701') center/cover;
+            opacity: 0.3;
+            z-index: -1;
+        }
+        h1 {
+            font-size: 3em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        @keyframes glow {
+            from { text-shadow: 2px 2px 4px rgba(255,215,0,0.5), 0 0 10px rgba(255,215,0,0.3); }
+            to { text-shadow: 2px 2px 4px rgba(0,191,255,0.5), 0 0 20px rgba(0,191,255,0.3); }
+        }
+        nav {
+            background: rgba(255, 215, 0, 0.2);
+            padding: 10px;
+            margin: 20px 0;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        nav li {
+            margin: 0 15px;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #ffd700;
+        }
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        section {
+            background: rgba(255, 255, 255, 0.05);
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+        h2 {
+            color: #ffd700;
+            border-bottom: 2px solid #ffd700;
+            padding-bottom: 10px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        ul li {
+            background: rgba(0, 191, 255, 0.1);
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            transition: transform 0.3s;
+        }
+        ul li:hover {
+            transform: translateX(10px);
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+        .surprise-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: transform 0.3s;
+            display: block;
+            margin: 20px auto;
+        }
+        .surprise-btn:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🌊 RELL Seas 🌊</h1>
+        <p>Погрузись в эпический мир пиратов, вдохновленный One Piece!</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#intro">Введение</a></li>
+            <li><a href="#features">Особенности</a></li>
+            <li><a href="#gameplay">Геймплей</a></li>
+            <li><a href="#fruits">Дьявольские Фрукты</a></li>
+            <li><a href="#haki">Хаки</a></li>
+            <li><a href="#exploration">Исследование</a></li>
+            <li><a href="#community">Сообщество</a></li>
+        </ul>
+    </nav>
+    
+    <main>
+        <section id="intro">
+            <h2>Что такое RELL Seas?</h2>
+            <p>RELL Seas — это предстоящая (теперь уже вышедшая в сентябре 2025) ролевая игра в жанре naval action-adventure RPG на платформе Roblox, основанная на вселенной One Piece. Разработана студией RELL Games, известной по Shindo Life. Игра предлагает уникальную систему прогресса, где игроки могут развиваться любым способом, подчеркивая свободу действий. В разработке почти 4 года, с множеством тизеров и утечек, которые создали огромный хайп.</p>
+            <p>Ссылка на игру: <a href="https://www.roblox.com/games/79381806600380/Official-RELL-Seas" target="_blank">Играть в RELL Seas</a></p>
+        </section>
+        
+        <section id="features">
+            <h2>Ключевые особенности</h2>
+            <div class="feature-grid">
+                <div class="card">
+                    <h3>Боги Фрукты (God Fruits)</h3>
+                    <p>Уникальные силы, которые можно найти в мире, без гacha-системы.</p>
+                </div>
+                <div class="card">
+                    <h3>Хаки</h3>
+                    <p>Три типа для баланса билдов: Armament, Observation, Conquerors.</p>
+                </div>
+                <div class="card">
+                    <h3>Корабли и Подводные лодки</h3>
+                    <p>Исследуйте моря, сражайтесь в naval боях, кастомизируйте.</p>
+                </div>
+                <div class="card">
+                    <h3>Боссы и Маунты</h3>
+                    <p>Сражайтесь с драконами, кракенами и получите маунтов.</p>
+                </div>
+                <div class="card">
+                    <h3>Рыбалка</h3>
+                    <p>Механика как в Stardew Valley для прогресса.</p>
+                </div>
+                <div class="card">
+                    <h3>Подводные бои</h3>
+                    <p>Управление кислородом и замедленные атаки.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="gameplay">
+            <h2>Геймплей</h2>
+            <p>Центральные механики включают исследование морей и глубин, плавание и кастомизацию кораблей, naval бои с уязвимыми точками, подводные бои с контролем кислорода, рыбалку для заполнения Fishing Dex. Бой сочетает фрукты, хакидзюцу, оружие и стили боя. Подтвержденные стили: Fishman Karate, Electro, Black Leg Style. Тайминг и позиционирование критичны для мастерства.</p>
+            <ul>
+                <li>Открытый мир с 4 морями, островами, пещерами и 7 Глубинами.</li>
+                <li>Прогресс через исследование, сбор фруктов, освоение стилей, рыбалку и боссов.</li>
+                <li>Свобода: будьте фрукт-юзером или хакидзюцу-мастером.</li>
+            </ul>
+        </section>
+        
+        <section id="fruits">
+            <h2>Дьявольские Фрукты (God Fruits)</h2>
+            <p>Таинственные фрукты, дающие уникальные силы. Классы:</p>
+            <ul>
+                <li><strong>Paramecia:</strong> Манипуляция телом и окружением, генерация веществ.</li>
+                <li><strong>Logia:</strong> Контроль и создание элемента, трансформация тела в него.</li>
+                <li><strong>Zoan:</strong> Трансформация в животное.</li>
+            </ul>
+            <p>Находятся через исследование, не все тизеры будут на релизе.</p>
+        </section>
+        
+        <section id="haki">
+            <h2>Система Хаки</h2>
+            <p>Три типа с 5-6 картами каждый для экипировки:</p>
+            <ul>
+                <li><strong>Armament Haki:</strong> Духовная энергия для брони, атака/защита, ранит Logia.</li>
+                <li><strong>Observation Haki:</strong> Усиленные чувства, предвидение (уклонение от 8 атак).</li>
+                <li><strong>Conquerors Haki:</strong> Интимидация и навязывание воли.</li>
+            </ul>
+            <p>Миксуйте карты для билдов.</p>
+        </section>
+        
+        <section id="exploration">
+            <h2>Исследование мира</h2>
+            <p>Четыре моря, острова, подводные пещеры и траншеи. Семь Глубин в Четвертом Море с уникальными течениями. Используйте подводные лодки или покрытые корабли для давления, но долго — смерть. Боссы: Dragon, Kraken, Sea King и другие. Маунты: Dunky Owl, Mammoth, Whale и т.д., некоторые от боссов.</p>
+        </section>
+        
+        <section id="community">
+            <h2>Сообщество</h2>
+            <p>Присоединяйся к фанатам!</p>
+            <ul>
+                <li>Discord: <a href="https://discord.gg/rellgames" target="_blank">RELL Games</a></li>
+                <li>YouTube: <a href="https://www.youtube.com/playlist?list=PLpZFISdMQLn9Y4F4cVbr_Ei60K5bLKuQ-" target="_blank">Тизеры RELL Seas</a></li>
+                <li>Twitter: <a href="https://x.com/RELLGames" target="_blank">@RELLGames</a></li>
+                <li>Wiki: <a href="https://rellseas.fandom.com/wiki/RELL_Seas" target="_blank">Fandom Wiki</a></li>
+            </ul>
+            <button class="surprise-btn" onclick="surprise()">🎁 Сюрприз: Секретный тизер!</button>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Фан-сайт RELL Seas. Создано с любовью к One Piece. Не официальный ресурс.</p>
+    </footer>
+    
+    <script>
+        function surprise() {
+            alert('Секрет: RELL Seas уже набрала 1 миллион игроков! Готовься к обновлениям с новыми боссами и фруктами! 🚀');
+            // Здесь можно добавить больше интерактива, например, анимацию или видео.
+            document.body.style.background = 'linear-gradient(135deg, #ff6b6b 0%, #ffd93d 50%, #4ecdc4 100%)';
+            setTimeout(() => {
+                document.body.style.background = 'linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%)';
+            }, 2000);
+        }
+        
+        // Плавная прокрутка для навигации
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+```

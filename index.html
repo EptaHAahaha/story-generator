@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Рассказчик Историй</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>AI-Рассказчик Историй</h1>
+            <p>Создай свою уникальную историю за секунды!</p>
+        </header>
+
+        <main>
+            <form id="storyForm">
+                <div class="input-group">
+                    <label for="genre">Жанр:</label>
+                    <select id="genre" required>
+                        <option value="">Выбери жанр</option>
+                        <option value="фэнтези">Фэнтези</option>
+                        <option value="детектив">Детектив</option>
+                        <option value="sci-fi">Научная фантастика</option>
+                        <option value="романтика">Романтика</option>
+                        <option value="ужасы">Ужасы</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="hero">Герой:</label>
+                    <input type="text" id="hero" placeholder="Например: пират или волшебница" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="place">Место действия:</label>
+                    <input type="text" id="place" placeholder="Например: подводный город" required>
+                </div>
+
+                <button type="submit">Генерировать историю!</button>
+            </form>
+
+            <section id="storyOutput" class="output hidden">
+                <h2>Твоя история:</h2>
+                <div id="storyText"></div>
+                <button id="continueBtn" class="continue-btn">Продолжить историю</button>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Сделан руками Степана Громова</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+
+<style>
+    body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom, #667eea 0%, #764ba2 100%);
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    color: white;
+    margin-bottom: 40px;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+header p {
+    font-size: 1.2em;
+    opacity: 0.9;
+}
+
+main {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.input-group input,
+.input-group select {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+button {
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #5a67d8;
+}
+
+.output {
+    margin-top: 30px;
+    padding: 20px;
+    background: #f8f9ff;
+    border-radius: 10px;
+    border-left: 5px solid #667eea;
+}
+
+.output h2 {
+    color: #667eea;
+    margin-top: 0;
+}
+
+#storyText {
+    font-size: 18px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    min-height: 200px;
+}
+
+.continue-btn {
+    margin-top: 20px;
+    background: #48bb78;
+    width: auto;
+    padding: 10px 20px;
+}
+
+.continue-btn:hover {
+    background: #38a169;
+}
+
+.hidden {
+    display: none;
+}
+
+footer {
+    text-align: center;
+    color: white;
+    margin-top: 40px;
+    opacity: 0.8;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
+    }
+    
+    header h1 {
+        font-size: 2em;
+    }
+}
+</style>
+<script>document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('storyForm');
+    const output = document.getElementById('storyOutput');
+    const storyText = document.getElementById('storyText');
+    const continueBtn = document.getElementById('continueBtn');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const genre = document.getElementById('genre').value;
+        const hero = document.getElementById('hero').value;
+        const place = document.getElementById('place').value;
+
+        // Здесь подключи реальный API ИИ, например:
+        // fetch('https://api.openai.com/v1/chat/completions', {
+        //     method: 'POST',
+        //     headers: { 'Authorization': 'Bearer YOUR_API_KEY', 'Content-Type': 'application/json' },
+        //     body: JSON.stringify({
+        //         model: 'gpt-3.5-turbo',
+        //         messages: [{ role: 'user', content: `Напиши короткую историю в жанре ${genre}. Главный герой: ${hero}. Место: ${place}. Длина: 300 слов.` }]
+        //     })
+        // }).then(response => response.json())
+        // .then(data => storyText.textContent = data.choices[0].message.content)
+        // .catch(error => storyText.textContent = 'Ошибка генерации: ' + error);
+
+        // Пока симуляция (placeholder):
+        const simulatedStory = generateSimulatedStory(genre, hero, place);
+        storyText.textContent = simulatedStory;
+
+        output.classList.remove('hidden');
+        form.reset(); // Очистить форму после генерации
+    });
+
+    continueBtn.addEventListener('click', function() {
+        // Симуляция продолжения (или вызов API с "продолжи историю")
+        const currentStory = storyText.textContent;
+        const continuation = `\n\n...И вдруг, в кульминационный момент, ${hero} обнаруживает древний артефакт в ${place}, который меняет всё! Конец? Нет, это только начало новой главы.`;
+        storyText.textContent += continuation;
+    });
+
+    function generateSimulatedStory(genre, hero, place) {
+        const templates = {
+            фэнтези: `В далёком мире ${place} жил-был ${hero}. Однажды, под лунным светом, он/она наткнулся/натыкнулась на волшебный свиток. "${hero} отправился в эпическое приключение, сражаясь с драконами и разгадывая загадки древних эльфов. В конце, герой обрёл истинную силу и вернулся домой героем."`,
+            детектив: `В тёмных улочках ${place} детектив ${hero} расследовал загадочное убийство. Ключ к разгадке скрывался в старом письме. После погони и допросов, ${hero} поймал преступника в кульминационный момент. "Правда всегда побеждает тьму!"`,
+            'sci-fi': `На космической станции ${place} капитан ${hero} столкнулся с инопланетным вторжением. Используя высокие технологии, он/она активировал защитный щит. "В бесконечности космоса надежда — в человеческом духе."`,
+            романтика: `В уютном уголке ${place} ${hero} встретил/встретила любовь своей жизни. Их прогулки под звёздами переросли в страстный роман. "Сердце знает путь к счастью лучше разума."`,
+            ужасы: `В заброшенном ${place} ${hero} услышал шёпот теней. Ночью тени ожили, преследуя его/её. Но смелость героя развеяла ужас. "Страх — лишь иллюзия в темноте."`
+        };
+
+        return templates[genre] || `В ${place} ${hero} пережил(а) незабываемое приключение в жанре ${genre}. Это была история о смелости и открытиях!`;
+    }
+});
+</script>
+</body>
+</html>
